@@ -88,9 +88,4 @@ public class Task {
         return "Task [id=" + id + ", title=" + title + ", description=" + description + ", completedAt=" + completedAt
                 + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
     }
-
-    
-
-    
-
 }
