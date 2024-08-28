@@ -11,6 +11,6 @@ import com.project.tasks.services.exception.NotFoundException;
 public class GeneralControllerAdvice {
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<String> handleNotFound(RuntimeException e) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage())
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
 }

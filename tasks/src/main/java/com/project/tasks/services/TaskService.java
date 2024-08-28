@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.project.tasks.dto.TaskCreationDto;
 import com.project.tasks.entities.Tasks;
 import com.project.tasks.repositories.TaskRepository;
+import com.project.tasks.services.exception.TaskNotFound;
 
 @Service
 public class TaskService {
@@ -24,5 +25,10 @@ public class TaskService {
 
     public List<Tasks> getAllTasks() {
         return this.taskRepository.findAll();
+    }
+
+    public Tasks getById(Long id) {
+        Tasks task = this.taskRepository.findById(id).orElseThrow(TaskNotFound::new);
+        return task;
     }
 }

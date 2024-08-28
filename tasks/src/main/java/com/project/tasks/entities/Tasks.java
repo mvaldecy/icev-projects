@@ -1,6 +1,6 @@
 package com.project.tasks.entities;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,21 +21,21 @@ public class Tasks {
     private String description;
 
     @Column(name = "completed_at")
-    private LocalDate completedAt;
+    private LocalDateTime completedAt;
 
     @Column(name = "created_at")
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
-    private LocalDate updatedAt;
+    private LocalDateTime updatedAt;
 
     public Tasks() {}
 
     public Tasks(String title, String description) {
         this.title = title;
         this.description = description;
-        this.createdAt = LocalDate.now();
-        this.updatedAt = LocalDate.now();
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -62,29 +62,37 @@ public class Tasks {
         this.description = description;
     }
 
-    public LocalDate getCompletedAt() {
+    public LocalDateTime getCompletedAt() {
         return completedAt;
     }
 
-    public void completeTask() {
-        this.completedAt = LocalDate.now();
+    public void setCompletedAt(LocalDateTime completedAt) {
+        this.completedAt = completedAt;
     }
 
-    public LocalDate getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDate createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public LocalDate getUpdatedAt() {
+    public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void updateTask(LocalDate updatedAt) {
-        this.updatedAt = LocalDate.now;
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
+
+    @Override
+    public String toString() {
+        return "Tasks [id=" + id + ", title=" + title + ", description=" + description + ", completedAt=" + completedAt
+                + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+    }
+
+    
 
     
 }
