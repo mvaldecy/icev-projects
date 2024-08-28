@@ -1,8 +1,11 @@
 package com.project.tasks.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.config.Task;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,5 +27,10 @@ public class TaskController {
     @PostMapping(value = "/task")
     public ResponseEntity<Tasks> createTask(@RequestBody TaskCreationDto task) {
         return ResponseEntity.status(HttpStatus.CREATED).body(this.taskService.createTask(task));
+    }
+
+    @GetMapping(value = "/task")
+    public ResponseEntity<List<Tasks>> getAllTasks() {
+        return ResponseEntity.status(HttpStatus.OK).body(this.taskService.getAllTasks());
     }
 }
