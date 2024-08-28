@@ -1,10 +1,10 @@
-package com.project.taksCrud;
+package com.project.tasks;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TaksCrudApplicationTests {
+class TasksApplicationTests {
 
 	@Test
 	void contextLoads() {

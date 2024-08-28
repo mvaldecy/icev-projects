@@ -1,4 +1,4 @@
-package com.project.taksCrud.entities;
+package com.project.tasks.entities;
 
 import java.time.LocalDate;
 
@@ -11,7 +11,8 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tasks")
-public class Task {
+public class Tasks {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,18 +22,20 @@ public class Task {
 
     @Column(name = "completed_at")
     private LocalDate completedAt;
-    
+
     @Column(name = "created_at")
     private LocalDate createdAt;
 
     @Column(name = "updated_at")
     private LocalDate updatedAt;
 
-    public Task() {}
+    public Tasks() {}
 
-    public Task(String title, String description) {
+    public Tasks(String title, String description) {
         this.title = title;
         this.description = description;
+        this.createdAt = LocalDate.now();
+        this.updatedAt = LocalDate.now();
     }
 
     public Long getId() {
@@ -63,8 +66,8 @@ public class Task {
         return completedAt;
     }
 
-    public void setCompletedAt(LocalDate completedAt) {
-        this.completedAt = completedAt;
+    public void completeTask() {
+        this.completedAt = LocalDate.now();
     }
 
     public LocalDate getCreatedAt() {
@@ -79,13 +82,9 @@ public class Task {
         return updatedAt;
     }
 
-    public void setUpdatedAt(LocalDate updatedAt) {
-        this.updatedAt = updatedAt;
+    public void updateTask(LocalDate updatedAt) {
+        this.updatedAt = LocalDate.now;
     }
 
-    @Override
-    public String toString() {
-        return "Task [id=" + id + ", title=" + title + ", description=" + description + ", completedAt=" + completedAt
-                + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
-    }
+    
 }
