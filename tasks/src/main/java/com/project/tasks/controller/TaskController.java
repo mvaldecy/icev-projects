@@ -1,5 +1,6 @@
 package com.project.tasks.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.tasks.dto.TaskCreationDto;
 import com.project.tasks.entities.Tasks;
@@ -57,5 +60,11 @@ public class TaskController {
     @PutMapping(value = "/tasks/{id}")
     public ResponseEntity<Tasks> editTask(@PathVariable("id") Long id, @RequestBody TaskCreationDto task) {
         return ResponseEntity.status(HttpStatus.OK).body(this.taskService.editTasksById(id, task));
+    }
+
+    @PostMapping(value = "/tasks/upload", consumes = "multipart/form-data")
+    public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
+        this.taskService.saveCsv(file);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Arquivo carregado");
     }
 }
