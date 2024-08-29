@@ -1,5 +1,6 @@
 package com.project.tasks.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -30,5 +31,16 @@ public class TaskService {
     public Tasks getById(Long id) {
         Tasks task = this.taskRepository.findById(id).orElseThrow(TaskNotFound::new);
         return task;
+    }
+
+    public Tasks completeTasks(Long id) {
+        Tasks task = this.getById(id);
+        task.setCompletedAt(LocalDateTime.now());
+        return this.taskRepository.save(task);
+    }
+
+    public void deleteTaskById(Long id) {
+        Tasks task = this.getById(id);
+        this.taskRepository.deleteById(id);
     }
 }
