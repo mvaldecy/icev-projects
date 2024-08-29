@@ -53,4 +53,9 @@ public class TaskController {
         this.taskService.deleteTaskById(id);
         return ResponseEntity.status(HttpStatus.OK).body("Task excluída");
     }
+
+    @PutMapping(value = "/tasks/{id}")
+    public ResponseEntity<Tasks> editTask(@PathVariable("id") Long id, @RequestBody TaskCreationDto task) {
+        return ResponseEntity.status(HttpStatus.OK).body(this.taskService.editTasksById(id, task));
+    }
 }

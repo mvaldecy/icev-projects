@@ -43,4 +43,15 @@ public class TaskService {
         Tasks task = this.getById(id);
         this.taskRepository.deleteById(id);
     }
+
+    public Tasks editTasksById(Long id, TaskCreationDto body) {
+        Tasks task = this.getById(id);
+        if (body.title() != null) {
+            task.setTitle(body.title());
+        }
+        if (body.description() != null) {
+            task.setDescription(body.description());
+        }
+        return this.taskRepository.save(task);
+    }
 }
